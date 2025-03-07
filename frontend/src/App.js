@@ -7,6 +7,7 @@ import SignUpPage from "./pages/SignUp";
 import VerifyPage from "./pages/VerifyEmail";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./pages/Profile";
+import BookRoom from "./pages/bookaroom";
 
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/verify-email" element={<VerifyPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/book-room" element={<BookRoom />} />
       </Routes>
     </Router>
   );
