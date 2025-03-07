@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from '../api/axios';
 import Sidebar from "../components/Sidebar"; // Import the Sidebar component
 import "../styles/Dashboard.modules.css";
 
@@ -16,7 +16,7 @@ const Dashboard = () => {
         if (!token) throw new Error("No token found");
 
         const response = await axios.get(
-          "http://localhost:5000/api/auth/user-info",
+          "/api/auth/user-info",
           { headers: { Authorization: `Bearer ${token}` } }
         );
         console.log("User Info Response:", response.data);
