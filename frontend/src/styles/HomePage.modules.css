@@ -130,38 +130,91 @@ body {
     margin: 0.5rem 0;
   }
   
-  /* Steps */
-  .steps {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin: 2rem 0;
-  }
-  
-  .step {
-    background-color: #4A6778;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    width: 200px;
-    text-align: center;
-  }
-  
-  /* Footer */
-  .footer {
-    background-color: #4A6778;
-    color: #FFFFFF;
-    text-align: center;
-    padding: 1rem;
-  }
-  
-  .footer-links a {
-    color: #FFFFFF;
-    margin-right: 1rem;
-    text-decoration: none;
-  }
-  
-  .footer-links a:hover {
-    text-decoration: underline;
-  }
-  
+  /* General Reset */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+}
+
+/* Steps Section */
+.steps {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.steps h3 {
+  font-size: 1.8rem;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+.steps-container {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.step {
+  background: linear-gradient(135deg, #4A6778, #2C3E50);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  width: 250px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.step-number {
+  display: block;
+  font-size: 2rem;
+  font-weight: bold;
+  background: #ffffff;
+  color: #4A6778;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer */
+.footer {
+  background-color: #2C3E50;
+  color: white;
+  text-align: center;
+  padding: 2rem 1rem;
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 1rem;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: #f39c12;
+}
+
+.footer-contact p {
+  margin: 0.5rem 0;
+  font-size: 1rem;
+}

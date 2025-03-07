@@ -48,45 +48,60 @@ const HomePage = () => {
       </section>
 
       {/* About Us Section */}
-      <section className="about-us">
+      {/* <section className="about-us">
         <h2>About Us</h2>
         <p>
           This platform provides a seamless and intuitive process to reserve a
           discussion room, minimizing the time and effort of students.
         </p>
         <button className="availability-button">Check Availability</button>
-      </section>
+      </section> */}
 
       {/* Working Hours */}
-      <section className="working-hours">
+      {/* <section className="working-hours">
         <h3>Working Hours</h3>
         <ul>
           <li>Monday - Friday: 8:30 - 22:00</li>
           <li>Saturday: 8:00 - 16:00</li>
           <li>Holidays: 9:00 - 17:00</li>
         </ul>
-      </section>
+      </section> */}
 
       {/* Steps to Follow */}
-      <section className="steps">
-        <h3>Steps to Follow</h3>
-        <div className="step">1. Create an account to begin the process</div>
-        <div className="step">2. Check availability and fill the forms</div>
-        <div className="step">3. Submit your booking request</div>
-      </section>
+      {/* Steps to Follow */}
+<section className="steps">
+  <h3>Steps to Follow</h3>
+  <div className="steps-container">
+    <div className="step">
+      <span className="step-number">1</span>
+      <p>Create an account to begin the process</p>
+    </div>
+    <div className="step">
+      <span className="step-number">2</span>
+      <p>Check availability and fill the forms</p>
+    </div>
+    <div className="step">
+      <span className="step-number">3</span>
+      <p>Submit your booking request</p>
+    </div>
+  </div>
+</section>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="footer-links">
-          <a href="/">Book a Room</a>
-          <a href="/">Check Availability</a>
-          <a href="/">Contact Us</a>
-        </div>
-        <div className="footer-contact">
-          <p>+233 503 3456</p>
-          <p>email@university.com</p>
-        </div>
-      </footer>
+{/* Footer */}
+<footer className="footer">
+  <div className="footer-content">
+    <div className="footer-links">
+      <a href="/">Book a Room</a>
+      <a href="/">Check Availability</a>
+      <a href="/">Contact Us</a>
+    </div>
+    <div className="footer-contact">
+      <p>📞 +233 55 00 5678</p>
+      <p>📧 ug@university.com</p>
+    </div>
+  </div>
+</footer>
+
     </div>
   );
 };
