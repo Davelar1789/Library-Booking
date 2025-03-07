@@ -16,7 +16,7 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-  origin: "https://library-booker2.vercel.app/", // Replace with your frontend URL
+  origin: "https://library-booker2.vercel.app", // Replace with your frontend URL
   credentials: true, // Allow credentials
 };
 
