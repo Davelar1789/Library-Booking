@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from '../api/axios';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/VerifyEmail.modules.css";
@@ -14,7 +14,7 @@ const VerifyEmail = () => {
 
   const sendCode = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/send-verification-code", { email });
+      const response = await axios.post("/api/auth/send-verification-code", { email });
       if (response.status === 200) {
         toast.success("Verification code sent to your email");
         setSent(true);
@@ -26,7 +26,7 @@ const VerifyEmail = () => {
 
   const verifyCode = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/verify-code", { email, code });
+      const response = await axios.post("/api/auth/verify-code", { email, code });
       if (response.status === 200) {
         toast.success("Email verified successfully!");
         navigate('/login'); // Navigate to /login route
