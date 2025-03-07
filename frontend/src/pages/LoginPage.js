@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from '../api/axios';
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/Login.modules.css";
@@ -24,7 +24,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-        const response = await axios.post("http://localhost:5000/api/auth/login", {
+        const response = await axios.post("/api/auth/login", {
             email,
             password,
         });
