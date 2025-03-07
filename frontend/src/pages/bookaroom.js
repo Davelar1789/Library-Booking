@@ -58,7 +58,7 @@ const BookARoom = () => {
       }
 
       const response = await axios.post(
-        "/api/book-room",
+        "/api/bookings/book-room",
         { groupName, members, groupLeader, email, meetingDate, tableNumber },
         { headers: { Authorization: `Bearer ${token}` } }
       );
