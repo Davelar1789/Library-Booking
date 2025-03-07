@@ -1,0 +1,167 @@
+/* src/styles/HomePage.css */
+
+/* General Styles */
+body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    color: #FFFFFF;
+  }
+  
+  .homepage {
+    background-color: #5C7C89;
+  }
+  
+  /* Navbar */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    color: #FFFFFF;
+  }
+  
+  .navbar-left .navbar-brand {
+    font-family: "Caushan Script", cursive;
+    font-size: 1.8rem;
+    font-weight: bold;
+  }
+  
+  .navbar-middle {
+    display: flex;
+    gap: 1.5rem;
+  }
+  
+  .navbar-tab {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  
+  .navbar-tab:hover {
+    text-decoration: underline;
+  }
+  
+  .navbar-right {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  /* Navbar Buttons */
+.login-button {
+    background-color: #FFFFFF; /* Distinct color for the login button */
+    color: #242424;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  .hero-image {
+    width: 100%;
+    margin-top: 1rem;
+    border-radius: 10px;
+    max-height: 400px;
+    object-fit: cover;
+  }
+  
+  
+  .signup-button {
+    background-color: transparent; /* Blends with the page background */
+    color: #FFFFFF;
+    border: transparent; /* Gives it some visibility */
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .login-button:hover,
+  .signup-button:hover {
+    opacity: 0.8; /* Subtle hover effect for both buttons */
+  }
+  
+  
+  /* Hero Section */
+  .hero {
+    text-align: center;
+    margin: 2rem;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .booking-button {
+    background-color: #0073E6;
+    color: #FFFFFF;
+    border: none;
+    padding: 1rem 2rem;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1.2rem;
+  }
+  
+  /* About Us */
+  .about-us {
+    text-align: center;
+    margin: 2rem;
+  }
+  
+  .availability-button {
+    background-color: #0073E6;
+    color: #FFFFFF;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  /* Working Hours */
+  .working-hours ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .working-hours li {
+    margin: 0.5rem 0;
+  }
+  
+  /* Steps */
+  .steps {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  
+  .step {
+    background-color: #4A6778;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 200px;
+    text-align: center;
+  }
+  
+  /* Footer */
+  .footer {
+    background-color: #4A6778;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .footer-links a {
+    color: #FFFFFF;
+    margin-right: 1rem;
+    text-decoration: none;
+  }
+  
+  .footer-links a:hover {
+    text-decoration: underline;
+  }
+  

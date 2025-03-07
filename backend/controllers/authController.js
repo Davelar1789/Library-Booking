@@ -31,12 +31,24 @@ exports.login = async (req, res) => {
     try {
         const user = await User.findOne({ email });
         if (user && (await bcrypt.compare(password, user.password))) {
-            res.json({
+            // Generate token
+            const token = generateToken(user.id);
+
+            // Set token as a cookie
+            res.cookie('token', token, {
+                httpOnly: true,
+                secure: process.env.NODE_ENV === 'production',
+                sameSite: 'None',
+                maxAge: 3600000
+            });
+
+            // Send user data along with the token
+            res.status(200).json({
                 _id: user.id,
                 name: user.name,
                 email: user.email,
                 isAdmin: user.isAdmin,
-                token: generateToken(user.id),
+                token // Include the token explicitly for `localStorage` usage
             });
         } else {
             res.status(401).json({ message: 'Invalid email or password' });

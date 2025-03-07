@@ -1,0 +1,86 @@
+/* General Page Styles */
+.login-page {
+    background-color: #FFFFFF;
+    padding: 20px;
+    font-family: "Inter", sans-serif;
+}
+
+.university-name {
+    font-family: "Kaushan Script", cursive;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 14.51px;
+    text-align: left;
+    text-decoration-skip-ink: none;
+    color: #242424;
+}
+
+.middle-stuff {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: 100vh; /* Full viewport height to center vertically */
+}
+
+.login-title {
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 21.78px;
+    text-align: left;
+    color: #242424;
+    margin: 10px 0;
+}
+
+/* Form Styles */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.form-label {
+    font-size: 14px;
+    color: #242424;
+}
+
+.form-input {
+    padding: 10px;
+    border: 1px solid #CCCCCC;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+/* Buttons */
+.login-button2 {
+    width: 358px;
+    height: 39px;
+    background: #1F4959;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px 0 0 0;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+}
+
+.signup-text {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #242424;
+}
+
+.link {
+    text-decoration: underline;
+    cursor: pointer;
+    color: #0000EE;
+}

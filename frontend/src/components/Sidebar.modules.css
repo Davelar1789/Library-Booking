@@ -1,0 +1,100 @@
+.sidebar2 {
+  width: 250px;
+  background-color: #153D6F;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+  
+  .profile2 {
+    text-align: center;
+    margin-bottom: 5px;
+  }
+  
+  .profile2-img {
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 8px;
+  }
+  
+  .university-name{
+    color: #ffffff;
+  }
+
+  .profile2 h3 {
+    margin: 10px 0 5px;
+  }
+  
+  .profile2 p {
+    font-size: 14px;
+    color: #b0b0b0;
+  }
+  
+  .menu2 {
+    width: 100%;
+    margin-top: 30px;
+  }
+  
+  .menu2 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu2 li {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    transition: background-color 0.3s;
+  }
+  
+  
+  
+  .menu2 .menu-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #ffffff;
+    width: 100%;
+  }
+  
+  .menu2 .menu-link:hover {
+    text-decoration: none;
+    color: #ffffff;
+  }
+  
+  .menu2 .menu-divider {
+    border: 0;
+    border-top: 1px solid #555555;
+    margin: 15px 0;
+  }
+  
+  .menu2 .logout {
+    color: #ffffff;
+    margin-bottom: 5px;
+  }
+  
+  .active-tab {
+    background-color: #5c7c89; /* Highlight color for the active tab */
+    color: #ffffff; /* Ensure text is readable */
+  }
+  
+  .active-tab .menu-link {
+    color: #ffffff; /* Ensure text remains white in the active state */
+  }
+  
+  .menu2 li:hover {
+    background-color: #4a6976; /* Slightly darker color for hover */
+  }
+  
+  
