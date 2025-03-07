@@ -34,17 +34,6 @@ const BookARoom = () => {
     fetchUserInfo();
   }, [navigate]);
 
-  useEffect(() => {
-    const fetchBookings = async () => {
-      const dummyBookings = [
-        { id: 1, room: "Room A", date: "2025-01-15", time: "10:00 AM - 12:00 PM", status: "Confirmed" },
-        { id: 2, room: "Room B", date: "2025-01-20", time: "02:00 PM - 03:30 PM", status: "Pending" },
-      ];
-      setBookings(dummyBookings);
-    };
-    fetchBookings();
-  }, []);
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
