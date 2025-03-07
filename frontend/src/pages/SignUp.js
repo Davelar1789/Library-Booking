@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/SignUp.modules.css";
 import "../styles/VerifyEmail.modules.css";
+import axios from '../api/axios';
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom'
 
@@ -35,7 +35,7 @@ const SignUp = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/signup", {
+      const response = await axios.post("/api/auth/signup", {
         name,
         email,
         password,
@@ -55,7 +55,7 @@ const SignUp = () => {
 
   const sendVerificationCode = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/api/auth/send-verification-code", { email });
+      const response = await axios.post("/api/auth/send-verification-code", { email });
       if (response.status === 200) {
         toast.success("Verification code sent to your email");
         setEmailSent(true);
@@ -70,7 +70,7 @@ const SignUp = () => {
   
     try {
       const code = verificationCode.join(""); // Join the array into a single string
-      const response = await axios.post("http://localhost:5000/api/auth/verify-code", {
+      const response = await axios.post("/api/auth/verify-code", {
         email,
         code,
       });
