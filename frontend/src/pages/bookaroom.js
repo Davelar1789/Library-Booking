@@ -4,12 +4,13 @@ import axios from "../api/axios";
 import "../styles/BookaRoom.modules.css"; // Import CSS
 import Sidebar from "../components/Sidebar"; // Import the Sidebar component
 
-
 const BookARoom = () => {
-  const [rooms, setRooms] = useState([]);
-  const [selectedRoom, setSelectedRoom] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
+  const [groupName, setGroupName] = useState("");
+  const [members, setMembers] = useState([""]); // Array for multiple members
+  const [groupLeader, setGroupLeader] = useState("");
+  const [email, setEmail] = useState("");
+  const [meetingDate, setMeetingDate] = useState("");
+  const [tableNumber, setTableNumber] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
   const [user, setUser] = useState(null);
@@ -21,12 +22,13 @@ const BookARoom = () => {
         const token = localStorage.getItem("token");
         if (!token) throw new Error("No token found");
 
-        const response = await axios.get(
-          "/api/auth/user-info",
-          { headers: { Authorization: `Bearer ${token}` } }
-        );
-        console.log("User Info Response:", response.data);
+        const response = await axios.get("/api/auth/user-info", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        
         setUser(response.data.data);
+        setGroupLeader(response.data.data.name); // Autofill leader's name
+        setEmail(response.data.data.email); // Autofill leader's email
       } catch (error) {
         navigate("/login");
       }
@@ -39,21 +41,10 @@ const BookARoom = () => {
     navigate("/login");
   };
 
-  useEffect(() => {
-    const fetchRooms = async () => {
-      try {
-        const response = await axios.get("/api/rooms");
-        setRooms(response.data.rooms);
-      } catch (error) {
-        console.error("Error fetching rooms:", error);
-      }
-    };
-    fetchRooms();
-  }, []);
-
   const handleBooking = async (e) => {
     e.preventDefault();
-    if (!selectedRoom || !date || !time) {
+
+    if (!groupName || members.length === 0 || !groupLeader || !email || !meetingDate || !tableNumber) {
       setMessage("Please fill in all fields.");
       return;
     }
@@ -68,15 +59,16 @@ const BookARoom = () => {
 
       const response = await axios.post(
         "/api/book-room",
-        { roomId: selectedRoom, date, time },
+        { groupName, members, groupLeader, email, meetingDate, tableNumber },
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
       if (response.data.success) {
         setMessage("Room booked successfully!");
-        setSelectedRoom("");
-        setDate("");
-        setTime("");
+        setGroupName("");
+        setMembers([""]);
+        setMeetingDate("");
+        setTableNumber("");
       } else {
         setMessage("Booking failed. Please try again.");
       }
@@ -88,55 +80,82 @@ const BookARoom = () => {
     }
   };
 
+  // Add more member input fields
+  const addMemberField = () => {
+    setMembers([...members, ""]);
+  };
+
+  // Update member names
+  const updateMember = (index, value) => {
+    const updatedMembers = [...members];
+    updatedMembers[index] = value;
+    setMembers(updatedMembers);
+  };
+
   return (
     <div className="book-room-page">
       <Sidebar user={user} onLogout={handleLogout} />
 
-    <div className="book-room-container">
-      <h2>Book a Room</h2>
-      <form onSubmit={handleBooking} className="form">
-        <label htmlFor="room">Select a Room:</label>
-        <select
-          id="room"
-          value={selectedRoom}
-          onChange={(e) => setSelectedRoom(e.target.value)}
-          className="select"
-        >
-          <option value="">-- Choose a Room --</option>
-          {rooms.map((room) => (
-            <option key={room.id} value={room.id}>
-              {room.name}
-            </option>
+      <div className="book-room-container">
+        <h2>Book a Room</h2>
+        <form onSubmit={handleBooking} className="form">
+
+          <label>Group Name:</label>
+          <input
+            type="text"
+            value={groupName}
+            onChange={(e) => setGroupName(e.target.value)}
+            className="input"
+          />
+
+          <label>Group Leader:</label>
+          <input type="text" value={groupLeader} readOnly className="input" />
+
+          <label>Email:</label>
+          <input type="email" value={email} readOnly className="input" />
+
+          <label>Members:</label>
+          {members.map((member, index) => (
+            <input
+              key={index}
+              type="text"
+              placeholder={`Member ${index + 1}`}
+              value={member}
+              onChange={(e) => updateMember(index, e.target.value)}
+              className="input"
+            />
           ))}
-        </select>
+          <button type="button" onClick={addMemberField} className="button">
+            Add Member
+          </button>
 
-        <label htmlFor="date">Select Date:</label>
-        <input
-          type="date"
-          id="date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-          className="input"
-        />
+          <label>Meeting Date:</label>
+          <input
+            type="date"
+            value={meetingDate}
+            onChange={(e) => setMeetingDate(e.target.value)}
+            className="input"
+          />
 
-        <label htmlFor="time">Select Time:</label>
-        <input
-          type="time"
-          id="time"
-          value={time}
-          onChange={(e) => setTime(e.target.value)}
-          className="input"
-        />
+          <label>Table Number (1 or 2):</label>
+          <select
+            value={tableNumber}
+            onChange={(e) => setTableNumber(e.target.value)}
+            className="select"
+          >
+            <option value="">-- Choose a Table --</option>
+            <option value="1">Table 1</option>
+            <option value="2">Table 2</option>
+          </select>
 
-        <button type="submit" className="button" disabled={loading}>
-          {loading ? "Booking..." : "Book Now"}
-        </button>
+          <button type="submit" className="button" disabled={loading}>
+            {loading ? "Booking..." : "Book Now"}
+          </button>
 
-        {message && <p className="message">{message}</p>}
-      </form>
+          {message && <p className="message">{message}</p>}
+        </form>
+      </div>
     </div>
-    </div>
-
   );
 };
 

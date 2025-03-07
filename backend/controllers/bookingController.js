@@ -1,31 +1,40 @@
-const Booking = require('../models/Booking');
+const Booking = require("../models/Bookings");
 
-exports.createBooking = async (req, res) => {
+// Book a room
+const bookRoom = async (req, res) => {
+  try {
     const { groupName, members, groupLeader, email, meetingDate, tableNumber } = req.body;
 
-    if (members.length < 4) return res.status(400).json({ message: 'Minimum 4 members required' });
-
-    try {
-        const booking = await Booking.create({
-            groupName,
-            members,
-            groupLeader,
-            email,
-            meetingDate,
-            tableNumber,
-        });
-
-        res.status(201).json(booking);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
+    if (!groupName || !members || !groupLeader || !email || !meetingDate || !tableNumber) {
+      return res.status(400).json({ message: "All fields are required." });
     }
+
+    const newBooking = new Booking({
+      groupName,
+      members,
+      groupLeader,
+      email,
+      meetingDate,
+      tableNumber,
+      status: "Pending",
+    });
+
+    await newBooking.save();
+    res.status(201).json({ success: true, message: "Booking request submitted!", booking: newBooking });
+
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
 };
 
-exports.getBookings = async (req, res) => {
-    try {
-        const bookings = await Booking.find();
-        res.json(bookings);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+// Get all bookings
+const getBookings = async (req, res) => {
+  try {
+    const bookings = await Booking.find();
+    res.status(200).json({ success: true, bookings });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
 };
+
+module.exports = { bookRoom, getBookings };
