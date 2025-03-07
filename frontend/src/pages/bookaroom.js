@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "../api/axios";
 import "../styles/BookaRoom.modules.css"; // Import CSS
+import Sidebar from "../components/Sidebar"; // Import the Sidebar component
+
 
 const BookARoom = () => {
   const [rooms, setRooms] = useState([]);
@@ -10,7 +12,43 @@ const BookARoom = () => {
   const [time, setTime] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (!token) throw new Error("No token found");
+
+        const response = await axios.get(
+          "/api/auth/user-info",
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        console.log("User Info Response:", response.data);
+        setUser(response.data.data);
+      } catch (error) {
+        navigate("/login");
+      }
+    };
+    fetchUserInfo();
+  }, [navigate]);
+
+  useEffect(() => {
+    const fetchBookings = async () => {
+      const dummyBookings = [
+        { id: 1, room: "Room A", date: "2025-01-15", time: "10:00 AM - 12:00 PM", status: "Confirmed" },
+        { id: 2, room: "Room B", date: "2025-01-20", time: "02:00 PM - 03:30 PM", status: "Pending" },
+      ];
+      setBookings(dummyBookings);
+    };
+    fetchBookings();
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
 
   useEffect(() => {
     const fetchRooms = async () => {
@@ -62,6 +100,9 @@ const BookARoom = () => {
   };
 
   return (
+    <div className="book-room-page">
+      <Sidebar user={user} onLogout={handleLogout} />
+
     <div className="book-room-container">
       <h2>Book a Room</h2>
       <form onSubmit={handleBooking} className="form">
@@ -105,6 +146,8 @@ const BookARoom = () => {
         {message && <p className="message">{message}</p>}
       </form>
     </div>
+    </div>
+
   );
 };
 
