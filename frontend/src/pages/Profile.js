@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from '../api/axios';
 import { toast, ToastContainer } from 'react-toastify'; // Import Toastify
 import 'react-toastify/dist/ReactToastify.css'; // Import Toastify CSS
 import Sidebar from '../components/Sidebar';
@@ -22,7 +22,7 @@ const Profile = ({ user }) => {
     // Fetch profile
     const token = localStorage.getItem('token'); // Retrieve the token from local storage
     axios
-      .get('http://localhost:5000/api/profile/profile', {
+      .get('/api/profile/profile', {
         headers: {
           Authorization: `Bearer ${token}`, // Add the token to the Authorization header
         },
@@ -60,7 +60,7 @@ const Profile = ({ user }) => {
     const token = localStorage.getItem('token'); // Retrieve the token
 
     try {
-      const response = await axios.put('http://localhost:5000/api/profile/profile', formData, {
+      const response = await axios.put('/api/profile/profile', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`, // Add the token here
