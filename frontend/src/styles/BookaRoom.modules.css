@@ -1,6 +1,12 @@
 /* Book a Room Container */
+.book-room-page {
+    display: flex;
+
+}
+
 .bookRoomContainer {
     margin-left: 290px;
+    flex-grow: 1;
     max-width: 500px;
     padding: 2rem;
     background: #ffffff;
